@@ -19,18 +19,20 @@ const imageData = [
   },
 ];
 
-function displayFirstImage() {
+let imageIndex = 0;
+
+function displayImage(index) {
   const fullscreenContainer = document.getElementById("fullscreen-container");
   const firstImg = document.createElement("img");
-  firstImg.src = imageData[0].imageSRC;
-  firstImg.alt = imageData[0].imgAlt;
+  firstImg.src = imageData[index].imageSRC;
+  firstImg.alt = imageData[index].imgAlt;
   firstImg.className = "fullscreen-image";
   fullscreenContainer.appendChild(firstImg);
 }
 
 function createThumbnails() {
   const thumbContainer = document.getElementById("thumbnail-container");
-  imageData.forEach(function (image) {
+  imageData.forEach(function (image, index) {
     console.log(image);
     const img = document.createElement("img");
     img.className = "thumb-image";
@@ -38,11 +40,13 @@ function createThumbnails() {
     img.alt = image.imageAlt;
     thumbContainer.appendChild(img);
 
-    img.addEventListener("click", createFullscreenImages);
+    img.addEventListener("click", function (event) {
+      createFullscreenImages(event, index);
+    });
   });
 }
 
-function createFullscreenImages(event) {
+function createFullscreenImages(event, index) {
   console.log(event.target.alt);
   const fullscreenContainer = document.getElementById("fullscreen-container");
   fullscreenContainer.innerHTML = null;
@@ -51,7 +55,27 @@ function createFullscreenImages(event) {
   newImg.alt = event.target.alt;
   newImg.className = "fullscreen-image";
   fullscreenContainer.appendChild(newImg);
+  imageIndex = index;
+  console.log(imageIndex);
 }
 
-displayFirstImage();
+function arrowKeys(event) {
+  if (event.key == "ArrowDown") {
+    imageIndex++;
+    if (imageIndex > imageData.length - 1) {
+      imageIndex = 0;
+    }
+  }
+  if (event.key == "ArrowUp") {
+    imageIndex = imageIndex - 1;
+    if (imageIndex < 0) {
+      imageIndex = imageData.length - 1;
+    }
+  }
+  displayImage(imageIndex);
+}
+
+document.addEventListener("keydown", arrowKeys);
+
+displayImage(0);
 createThumbnails();
