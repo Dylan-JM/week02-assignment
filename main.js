@@ -19,6 +19,15 @@ const imageData = [
   },
 ];
 
+function displayFirstImage() {
+  const fullscreenContainer = document.getElementById("fullscreen-container");
+  const firstImg = document.createElement("img");
+  firstImg.src = imageData[0].imageSRC;
+  firstImg.alt = imageData[0].imgAlt;
+  firstImg.className = "fullscreen-image";
+  fullscreenContainer.appendChild(firstImg);
+}
+
 function createThumbnails() {
   const thumbContainer = document.getElementById("thumbnail-container");
   imageData.forEach(function (image) {
@@ -44,4 +53,5 @@ function createFullscreenImages(event) {
   fullscreenContainer.appendChild(newImg);
 }
 
+displayFirstImage();
 createThumbnails();
