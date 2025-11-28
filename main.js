@@ -18,3 +18,17 @@ const imageData = [
     imageAlt: "Red panda on a tree",
   },
 ];
+
+function createThumbnails() {
+  const thumbContainer = document.getElementById("thumbnail-container");
+  imageData.forEach(function (image) {
+    console.log(image);
+    const img = document.createElement("img");
+    img.className = "thumb-image";
+    img.src = image.imageSRC;
+    img.alt = image.imageAlt;
+    thumbContainer.appendChild(img);
+  });
+}
+
+createThumbnails();
