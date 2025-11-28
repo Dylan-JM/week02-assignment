@@ -35,6 +35,13 @@ function createThumbnails() {
 
 function createFullscreenImages(event) {
   console.log(event.target.alt);
+  const fullscreenContainer = document.getElementById("fullscreen-container");
+  fullscreenContainer.innerHTML = null;
+  const newImg = document.createElement("img");
+  newImg.src = event.target.src;
+  newImg.alt = event.target.alt;
+  newImg.className = "fullscreen-image";
+  fullscreenContainer.appendChild(newImg);
 }
 
 createThumbnails();
