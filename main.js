@@ -28,7 +28,13 @@ function createThumbnails() {
     img.src = image.imageSRC;
     img.alt = image.imageAlt;
     thumbContainer.appendChild(img);
+
+    img.addEventListener("click", createFullscreenImages);
   });
+}
+
+function createFullscreenImages(event) {
+  console.log(event.target.alt);
 }
 
 createThumbnails();
