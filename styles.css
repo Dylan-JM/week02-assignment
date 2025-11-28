@@ -29,3 +29,11 @@
   position: absolute;
   z-index: 0;
 }
+
+/* for mobile devices */
+@media (width <800px) {
+  .thumbnail-container {
+    right: 3vh;
+    left: auto;
+  }
+}

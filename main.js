@@ -10,7 +10,7 @@ const imageData = [
   {
     imageName: "penguin",
     imageSRC: "./images/penguin.jpg",
-    imageAlt: "A penguin",
+    imageAlt: "A penguin with it's wings out",
   },
   {
     imageName: "redPanda",
