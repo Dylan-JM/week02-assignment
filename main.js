@@ -6,15 +6,11 @@ const imageData = [
     imageName: "belugaWhale",
     imageSRC: "./images/bWhale.jpg",
     imageAlt: "a beluga whale looking above water",
-    imageSrcSet: "images/bWhale.jpg 800w, images/penguin_small.jpg 480w",
-    imageSizes: "(max-width: 600px) 480px, 800px",
   },
   {
     imageName: "penguin",
     imageSRC: "./images/penguin.jpg",
     imageAlt: "A penguin with it's wings out",
-    imageSrcSet: "./images/penguin.jpg 800w, ./images/penguin_small.jpg 480w",
-    imageSizes: "(max-width: 600px) 480px, 800px",
   },
   {
     imageName: "redPanda",
@@ -27,7 +23,7 @@ function displayFirstImage() {
   const fullscreenContainer = document.getElementById("fullscreen-container");
   const firstImg = document.createElement("img");
   firstImg.src = imageData[0].imageSRC;
-  firstImg.alt = imageData[0].imageAlt;
+  firstImg.alt = imageData[0].imgAlt;
   firstImg.className = "fullscreen-image";
   fullscreenContainer.appendChild(firstImg);
 }
@@ -40,8 +36,6 @@ function createThumbnails() {
     img.className = "thumb-image";
     img.src = image.imageSRC;
     img.alt = image.imageAlt;
-    img.srcset = image.imageSrcSet;
-    img.sizes = image.imageSizes;
     thumbContainer.appendChild(img);
 
     img.addEventListener("click", createFullscreenImages);
@@ -51,15 +45,13 @@ function createThumbnails() {
 function createFullscreenImages(event) {
   console.log(event.target.alt);
   const fullscreenContainer = document.getElementById("fullscreen-container");
-  fullscreenContainer.innerHTML = "";
+  fullscreenContainer.innerHTML = null;
   const newImg = document.createElement("img");
   newImg.src = event.target.src;
   newImg.alt = event.target.alt;
-  newImg.srcset = event.target.srcset;
-  newImg.sizes = event.target.imageSizes;
   newImg.className = "fullscreen-image";
   fullscreenContainer.appendChild(newImg);
 }
 
-//displayFirstImage();
+displayFirstImage();
 createThumbnails();
